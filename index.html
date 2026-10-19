@@ -1,0 +1,137 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Einstein $1k paper portfolio · Dashboard</title><style>
+:root{--bg:#0b0f17;--card:#121826;--card2:#182033;--line:#243049;--tx:#e6ebf5;--mu:#8a96ad;--g:#22c55e;--gs:rgba(34,197,94,.14);--r:#ef4444;--rs:rgba(239,68,68,.14);--y:#eab308;--b:#60a5fa}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:16px 14px 40px}
+header.top{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+h1{font-size:20px;margin:0;letter-spacing:.2px}.sub{color:var(--mu);font-size:12px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600;background:var(--card2);border:1px solid var(--line)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--mu)}.live .dot{background:var(--g);box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:p 2s infinite}
+@keyframes p{70%{box-shadow:0 0 0 7px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.kpi .l{color:var(--mu);font-size:11px;text-transform:uppercase;letter-spacing:.6px}.kpi .v{font-size:24px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+.kpi .s{font-size:12px;color:var(--mu);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px}
+.card h2{font-size:14px;margin:0 0 10px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.card h2 small{color:var(--mu);font-weight:400;font-size:12px}
+.grid2{display:grid;grid-template-columns:2fr 1fr;gap:14px}.grid2>*{min-width:0}.card{min-width:0}@media(max-width:860px){.grid2{grid-template-columns:1fr}}
+.pos{color:var(--g)}.neg{color:var(--r)}.mu{color:var(--mu)}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{padding:8px 8px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line)}
+th{color:var(--mu);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+th:first-child,td:first-child{text-align:left}tr:last-child td{border-bottom:0}
+td.wrap{white-space:normal;text-align:left;min-width:220px;color:var(--mu);font-size:12px}
+a{color:var(--b);text-decoration:none}a:hover{text-decoration:underline}
+.tk{font-weight:700;color:var(--tx)}
+.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700}
+.bg{background:var(--gs);color:var(--g)}.br{background:var(--rs);color:var(--r)}.by{background:rgba(234,179,8,.15);color:var(--y)}.bm{background:var(--card2);color:var(--mu)}
+.bar{height:6px;border-radius:4px;background:var(--card2);overflow:hidden;margin-top:4px;min-width:80px}.bar>i{display:block;height:100%}
+.chip{display:inline-block;padding:1px 7px;margin:1px 2px;border-radius:6px;font-size:11px;font-weight:600;background:rgba(96,165,250,.13);color:var(--b)}
+.chip.inv{background:var(--rs);color:#f87171}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--mu)}.legend i{display:inline-block;width:12px;height:3px;border-radius:2px;margin-right:5px;vertical-align:middle}
+svg text{fill:var(--mu);font-size:11px}
+.checks{list-style:none;margin:8px 0 0;padding:0}.checks li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
+.checks li:last-child{border-bottom:0}
+.regime{font-size:22px;font-weight:800}
+.foot{color:var(--mu);font-size:11px;text-align:center;margin-top:18px}
+.btn{background:var(--card2);color:var(--tx);border:1px solid var(--line);border-radius:8px;padding:5px 10px;font-size:12px;cursor:pointer}
+@media(max-width:560px){.kpi .v{font-size:20px}h1{font-size:17px}
+.tw table,.tw tbody{display:block}.tw thead{display:none}
+.tw tr{display:grid;grid-template-columns:1fr 1fr;gap:2px 14px;padding:10px 0;border-bottom:1px solid var(--line)}
+.tw tr:last-child{border-bottom:0}
+.tw td{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:3px 0;border:0;text-align:right;white-space:normal}
+.tw td::before{content:attr(data-label);color:var(--mu);font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;text-align:left}
+.tw td:first-child{grid-column:1/-1;font-size:15px;padding-bottom:4px}.tw td:first-child::before{display:none}
+.tw td.wrap{grid-column:1/-1;display:block;min-width:0;text-align:left}.tw td.wrap::before{display:block;margin-bottom:2px}
+.tw td .bar{flex:1;max-width:140px}}
+</style></head><body><div class="wrap">
+<header class="top"><div><h1>📈 Einstein $1k paper portfolio</h1><div class="sub" id="asof"></div></div>
+<div style="display:flex;gap:8px;align-items:center"><span class="pill" id="mode"><i class="dot"></i><span></span></span></div></header>
+<section class="kpis" id="kpis"></section>
+<div class="grid2">
+ <section class="card"><h2>Equity curve vs SPY <small class="legend" id="legend"></small></h2><div id="chart" style="width:100%"></div>
+ <div class="sub">Points: first trade · each daily close (history.csv) · snapshot time</div></section>
+ <section class="card"><h2>Market filter <small>STRATEGY_v2 §1</small></h2><div id="regime"></div></section>
+</div>
+<section class="card"><h2>Open positions <small>Bar = price between stop (left) and target (right)</small></h2><div class="tw" id="pos"></div><div class="sub" id="posnote" style="margin-top:8px"></div></section>
+<section class="card"><h2>Today's predicted movers <small id="movsrc"></small></h2><div class="sub" id="movnote" style="margin-bottom:8px"></div><div class="tw" id="movers"></div>
+<div class="sub" style="margin-top:8px">2x funds are informational only; STRATEGY_v2 keeps them out of the paper portfolio until 30+ trades prove an edge.</div></section>
+<section class="card"><h2>Trade log <small>newest first</small></h2><div class="tw" id="trades"></div></section>
+<div class="foot">Paper trading only · prices from Yahoo Finance · predictions are not guarantees · <span id="err"></span></div>
+</div><script>
+const $=s=>document.querySelector(s);
+const f2=n=>n==null||isNaN(n)?'–':Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const usd=n=>n==null?'–':(n<0?'-$':'$')+f2(Math.abs(n));
+const sgn=n=>n==null?'–':(n>=0?'+':'')+f2(n);
+const cls=n=>n==null?'mu':(n>0?'pos':(n<0?'neg':'mu'));
+const pct=n=>`<span class="${cls(n)}">${sgn(n)}%</span>`;
+const money=n=>`<span class="${cls(n)}">${n>=0?'+':''}${usd(n)}</span>`;
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const yq=t=>`<a class="tk" href="https://finance.yahoo.com/quote/${encodeURIComponent(t)}" target="_blank" rel="noopener">${esc(t)}</a>`;
+function render(d){
+  $('#asof').textContent='As of '+d.as_of+(d.live?'':' · static snapshot');
+  $('#mode').className='pill'+(d.live?' live':''); $('#mode span').textContent=d.live?'LIVE':'SNAPSHOT';
+  const k=[
+    ['Total value',usd(d.equity),`Started ${usd(d.starting_value)} on ${esc(d.start_date)}`],
+    ['Return',pct(d.ret_pct),money(d.equity-d.starting_value)+' total'],
+    ['vs SPY',`<span class="${cls(d.alpha_pts)}">${sgn(d.alpha_pts)} pts</span>`,`SPY buy&amp;hold ${usd(d.spy.value)} (${sgn(d.spy.ret_pct)}%)`],
+    ['Cash',usd(d.cash),`${f2(d.cash/d.equity*100)}% of portfolio`],
+    ['Invested',usd(d.positions_value),`${d.positions.length} open · realized ${usd(d.realized)}`]];
+  $('#kpis').innerHTML=k.map(x=>`<div class="kpi"><div class="l">${x[0]}</div><div class="v">${x[1]}</div><div class="s">${x[2]}</div></div>`).join('');
+  // positions
+  $('#pos').innerHTML=d.positions.length?`<table><thead><tr><th>Ticker</th><th>Shares</th><th>Entry</th><th>Live</th><th>Day</th><th>Value</th><th>P&amp;L $</th><th>P&amp;L %</th><th>Stop</th><th>To stop</th><th>Target</th><th>To target</th></tr></thead><tbody>`+
+   d.positions.map(p=>{const rng=p.target-p.stop,pos=Math.max(0,Math.min(1,(p.last-p.stop)/rng));
+    const near=p.to_stop_pct<2;
+    return `<tr><td>${yq(p.ticker)} ${p.flag?`<span class="badge ${p.flag.startsWith('STOP')?'br':'bg'}">${p.flag}</span>`:''}<div class="bar" title="stop → target"><i style="width:${pos*100}%;background:${p.pnl>=0?'var(--g)':'var(--r)'}"></i></div></td>
+    <td>${Number(p.shares).toFixed(4)}</td><td>${f2(p.entry)}</td><td><b>${f2(p.last)}</b></td><td>${pct(p.day_pct)}</td><td>${usd(p.mv)}</td><td>${money(p.pnl)}</td><td>${pct(p.pnl_pct)}</td>
+    <td class="neg">${f2(p.stop)}</td><td><span class="badge ${near?'br':'bm'}">${f2(p.to_stop_pct)}%</span></td><td class="pos">${f2(p.target)}</td><td class="mu">${f2(p.to_target_pct)}%</td></tr>`}).join('')+
+   `</tbody></table>`:'<p class="mu">No open positions — all cash.</p>';
+  $('#posnote').textContent=d.positions.map(p=>`${p.ticker}: ${p.reason}`).join('  ·  ');
+  // trades
+  $('#trades').innerHTML=d.trades.length?`<table><thead><tr><th>Time (CT)</th><th>Side</th><th>Ticker</th><th>Shares</th><th>Price</th><th>Value</th><th>Reason</th></tr></thead><tbody>`+
+   d.trades.map(t=>`<tr><td class="mu">${esc(t.timestamp_ct.replace(' CT',''))}</td><td><span class="badge ${t.side=='BUY'?'bg':'br'}">${esc(t.side)}</span></td><td>${yq(t.ticker)}</td><td>${Number(t.shares).toFixed(4)}</td><td>${f2(+t.price)}</td><td>${usd(+t.value)}</td><td class="wrap">${esc(t.reason)}</td></tr>`).join('')+`</tbody></table>`:'<p class="mu">No trades yet.</p>';
+  chart(d.curve); movers(d.movers); regime(d.market_filter);
+  $('#err').textContent=Object.keys(d.errors||{}).length?'Quote errors: '+Object.entries(d.errors).map(([k,v])=>k+': '+v).join('; '):'';
+}
+function chart(c){
+  const el=$('#chart'),W=el.clientWidth||700,H=240,P={l:52,r:14,t:12,b:26};
+  const vals=c.flatMap(x=>[x.eq,x.spy]);let lo=Math.min(...vals),hi=Math.max(...vals);
+  const pad=Math.max((hi-lo)*.15,2);lo-=pad;hi+=pad;
+  const n=c.length,X=i=>P.l+(n<2?0:i*(W-P.l-P.r)/(n-1)),Y=v=>P.t+(hi-v)*(H-P.t-P.b)/(hi-lo);
+  const line=k=>c.map((x,i)=>`${i?'L':'M'}${X(i).toFixed(1)},${Y(x[k]).toFixed(1)}`).join('');
+  const last=c[n-1],up=last.eq>=last.spy;
+  let g='';for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4;g+=`<line x1="${P.l}" x2="${W-P.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="#243049" stroke-dasharray="3 4"/><text x="${P.l-6}" y="${Y(v)+4}" text-anchor="end">$${v.toFixed(0)}</text>`}
+  g+=`<line x1="${P.l}" x2="${W-P.r}" y1="${Y(1000)}" y2="${Y(1000)}" stroke="#8a96ad" stroke-opacity=".45"/>`;
+  const step=Math.max(1,Math.ceil(n/6));c.forEach((x,i)=>{if(i%step==0||i==n-1)g+=`<text x="${X(i)}" y="${H-6}" text-anchor="${i==0?'start':(i==n-1?'end':'middle')}">${esc(x.kind=='live'?'now':x.t.slice(5))}</text>`});
+  const col=up?'#22c55e':'#ef4444';
+  const area=line('eq')+`L${X(n-1)},${H-P.b}L${X(0)},${H-P.b}Z`;
+  el.innerHTML=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".28"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></linearGradient></defs>${g}
+  <path d="${area}" fill="url(#ga)"/><path d="${line('spy')}" fill="none" stroke="#60a5fa" stroke-width="2" stroke-dasharray="5 4"/><path d="${line('eq')}" fill="none" stroke="${col}" stroke-width="2.5"/>
+  ${c.map((x,i)=>`<circle cx="${X(i)}" cy="${Y(x.eq)}" r="${i==n-1?4.5:3}" fill="${col}"><title>${esc(x.t)} · Portfolio $${f2(x.eq)} · SPY $${f2(x.spy)}</title></circle>`).join('')}</svg>`;
+  $('#legend').innerHTML=`<span><i style="background:${col}"></i>Portfolio ${usd(last.eq)}</span><span><i style="background:#60a5fa"></i>SPY buy&amp;hold ${usd(last.spy)}</span>`;
+}
+function movers(m){
+  if(!m){$('#movers').innerHTML='<p class="mu">No movers file found in movers/.</p>';return}
+  $('#movsrc').textContent=`${m.date} · ${m.price_source} · ${m.file}`;
+  $('#movnote').textContent=m.market_note||'';
+  const conf={high:'bg',med:'by',low:'bm'};
+  $('#movers').innerHTML=`<table><thead><tr><th>Ticker</th><th>Dir</th><th>Conf.</th><th>PM price</th><th>PM %</th><th>Live</th><th>Day %</th><th>vs PM</th><th>2x long</th><th>Inverse</th><th>Catalyst</th></tr></thead><tbody>`+
+   m.movers.map(r=>`<tr><td><span class="mu">${r.rank}.</span> ${yq(r.ticker)}<div class="mu" style="font-size:11px">${esc(r.name||'')}</div></td>
+   <td><span class="badge ${r.direction=='up'?'bg':'br'}">${r.direction=='up'?'▲ UP':'▼ DOWN'}</span></td><td><span class="badge ${conf[r.confidence]||'bm'}">${esc((r.confidence||'').toUpperCase())}</span></td>
+   <td>${f2(r.pm_price)}</td><td>${pct(r.pm_change_pct)}</td><td><b>${r.live?f2(r.live):'–'}</b></td><td>${pct(r.live_day_pct)}</td><td>${pct(r.vs_pm_pct)}</td>
+   <td>${(r.leveraged||[]).map(t=>`<span class="chip">${esc(t)}</span>`).join('')||'<span class="mu">–</span>'}</td>
+   <td>${(r.inverse||[]).map(t=>`<span class="chip inv">${esc(t)}</span>`).join('')||'<span class="mu">–</span>'}</td><td class="wrap">${esc(r.catalyst)}</td></tr>`).join('')+`</tbody></table>`;
+}
+function regime(r){
+  const c={Green:'pos',Yellow:'',Red:'neg'}[r.regime];const st=r.regime=='Yellow'?'style="color:var(--y)"':'';
+  $('#regime').innerHTML=`<div class="regime ${c||'mu'}" ${st}>${esc(r.regime)}</div><div class="mu" style="font-size:12px">${esc(r.rules||'')}</div>
+   <ul class="checks">${(r.checks||[]).map(x=>`<li><span>${x.ok?'<span class="pos">✔</span>':'<span class="neg">✘</span>'} ${esc(x.label)}</span><span class="mu">${esc(x.detail)}</span></li>`).join('')}</ul>
+   <div class="mu" style="font-size:11px;margin-top:8px">${esc(r.note||'')}<br>Source: ${esc(r.source||'')}</div>`;
+}
+function labels(){document.querySelectorAll('.tw table').forEach(t=>{const h=[...t.querySelectorAll('thead th')].map(x=>x.textContent);t.querySelectorAll('tbody tr').forEach(r=>[...r.children].forEach((c,i)=>c.setAttribute('data-label',h[i]||'')))})}
+const _r=render;render=function(d){_r(d);labels()};
+window.addEventListener('resize',()=>window.__D&&chart(window.__D.curve));
+
+window.__D={"name": "Einstein $1k paper portfolio", "as_of": "2026-10-19 10:38:43 CT", "live": false, "start_date": "2026-10-19", "starting_value": 1000.0, "cash": 951.68, "positions_value": 37.207499999999996, "equity": 988.8874999999999, "realized": -12.02, "ret_pct": -1.111250000000008, "spy": {"entry": 767.030029296875, "entry_time": "2026-10-19 08:40:22 CT (Yahoo last print 2026-10-19 08:40 CT)", "last": 770.3049926757812, "last_time": "2026-10-19 10:38 CT", "value": 1004.2696677493949, "ret_pct": 0.42696677493949675}, "alpha_pts": -1.5382167749394966, "positions": [{"ticker": "IRON", "shares": 0.484, "entry": 75.0, "last": 76.875, "last_time": "2026-10-19 10:38 CT", "mv": 37.207499999999996, "pnl": 0.9075, "pnl_pct": 2.499999999999991, "stop": 69.9, "target": 85.2, "to_stop_pct": 9.978540772532174, "to_target_pct": 10.829268292682936, "day_pct": 35.24806474313862, "entry_time": "2026-10-19 08:40:22 CT", "reason": "Phase 3 APOLLO met all endpoints; NDA resubmission by YE; holding full gap", "url": "https://finance.yahoo.com/quote/IRON", "flag": ""}], "trades": [{"timestamp_ct": "2026-10-19 08:56:31 CT", "ticker": "IRON", "side": "SELL", "shares": "2.716", "price": "72.9689", "value": "198.18", "price_source": "Yahoo Finance chart API, last print 2026-10-19 08:56 CT", "reason": "v2 resize: valid 5-min ORB (broke 75.50 OR high at 8:35) but A-grade gap >20% = half risk in Yellow regime (0.25% equity = ~$2.47); stop below OR low 69.90 -> keep 0.484 sh (P&L $-5.52)"}, {"timestamp_ct": "2026-10-19 08:56:15 CT", "ticker": "INTC", "side": "SELL", "shares": "2.553735", "price": "94.15", "value": "240.43", "price_source": "Yahoo Finance chart API, last print 2026-10-19 08:56 CT", "reason": "v2 exit: entry at 8:40 was before any ORB trigger (still inside 93.82-95.37 OR), Yellow regime caps open risk at 2%, no later ORB check scheduled; below falling 50-day | grade B (P&L $0.43)"}, {"timestamp_ct": "2026-10-19 08:56:15 CT", "ticker": "CLF", "side": "SELL", "shares": "17.630207", "price": "13.22", "value": "233.07", "price_source": "Yahoo Finance chart API, last print 2026-10-19 08:56 CT", "reason": "v2 exit: broke below 5-min OR low (13.70) at 8:35 so setup void, price below v2 stop, >half of gap given back | grade B/C (EPS beat, no confirmed guidance raise) | Yellow regime (P&L $-6.93)"}, {"timestamp_ct": "2026-10-19 08:40:23 CT", "ticker": "INTC", "side": "BUY", "shares": "2.553735", "price": "93.98", "value": "240.0", "price_source": "Yahoo Finance chart API, last print 2026-10-19 08:40 CT", "reason": "JPMorgan upgrade to Neutral + chip rebound; holding gap"}, {"timestamp_ct": "2026-10-19 08:40:22 CT", "ticker": "IRON", "side": "BUY", "shares": "3.2", "price": "75.0", "value": "240.0", "price_source": "Yahoo Finance chart API, last print 2026-10-19 08:40 CT", "reason": "Phase 3 APOLLO met all endpoints; NDA resubmission by YE; holding full gap"}, {"timestamp_ct": "2026-10-19 08:40:22 CT", "ticker": "CLF", "side": "BUY", "shares": "17.630207", "price": "13.613", "value": "240.0", "price_source": "Yahoo Finance chart API, last print 2026-10-19 08:40 CT", "reason": "Q3 EPS beat (0.28 vs ~0.21); holding ~70% of PM gap at open"}], "curve": [{"t": "2026-10-19 08:40", "eq": 1000.0, "spy": 1000.0, "kind": "start"}, {"t": "2026-10-19 10:38", "eq": 988.89, "spy": 1004.27, "kind": "live"}], "movers": {"date": "2026-10-19", "generated": "2026-10-19 08:18 CT", "price_source": "Yahoo Finance premarket, 8:18 AM CT", "market_note": "Nasdaq futures ~+1.1% premarket; AI/chip rebound after last week's selloff (momentum-crash rebound -> Yellow sizing per STRATEGY_v2).", "market_filter": null, "movers": [{"rank": 1, "ticker": "IRON", "name": "Disc Medicine", "pm_price": 73.82, "pm_change_pct": 29.9, "direction": "up", "confidence": "high", "catalyst": "Phase 3 win (APOLLO met all endpoints)", "leveraged": [], "inverse": [], "live": 76.875, "live_time": "2026-10-19 10:38 CT", "live_day_pct": 35.24806474313862, "vs_pm_pct": 4.138444865890012}, {"rank": 2, "ticker": "CLF", "name": "Cleveland-Cliffs", "pm_price": 14.12, "pm_change_pct": 16.5, "direction": "up", "confidence": "high", "catalyst": "Q3 earnings beat", "leveraged": [], "inverse": [], "live": 14.005000114440918, "live_time": "2026-10-19 10:38 CT", "live_day_pct": 15.552806224760051, "vs_pm_pct": -0.8144467815798917}, {"rank": 3, "ticker": "CRWV", "name": "CoreWeave", "pm_price": 65.87, "pm_change_pct": 7.3, "direction": "up", "confidence": "med", "catalyst": "Goldman Sachs upgrade after ~24% drop last week", "leveraged": ["CWVX", "CRWU", "CRWG"], "inverse": ["CORD"], "live": 63.244998931884766, "live_time": "2026-10-19 10:38 CT", "live_day_pct": 3.021663026363841, "vs_pm_pct": -3.985123831964843}, {"rank": 4, "ticker": "NBIS", "name": "Nebius", "pm_price": 178.52, "pm_change_pct": 7.9, "direction": "up", "confidence": "med", "catalyst": "AI cloud rebound; director share purchase", "leveraged": ["NBIL"], "inverse": ["NBIZ"], "live": 173.0, "live_time": "2026-10-19 10:38 CT", "live_day_pct": 4.55067383815797, "vs_pm_pct": -3.0920905220703565}, {"rank": 5, "ticker": "APLD", "name": "Applied Digital", "pm_price": 19.5, "pm_change_pct": 8.0, "direction": "up", "confidence": "med", "catalyst": "AI data center rebound; heaviest PM volume", "leveraged": [], "inverse": [], "live": 19.9950008392334, "live_time": "2026-10-19 10:38 CT", "live_day_pct": 10.775627918190578, "vs_pm_pct": 2.538465842222548}, {"rank": 6, "ticker": "XE", "name": "X-Energy", "pm_price": 11.25, "pm_change_pct": 8.6, "direction": "up", "confidence": "low", "catalyst": "Nuclear / AI power sympathy bounce", "leveraged": [], "inverse": [], "live": 10.53499984741211, "live_time": "2026-10-19 10:38 CT", "live_day_pct": 1.689187716333107, "vs_pm_pct": -6.355556911892357}, {"rank": 7, "ticker": "AEHR", "name": "Aehr Test Systems", "pm_price": 65.45, "pm_change_pct": 8.0, "direction": "up", "confidence": "low", "catalyst": "Chip equipment rebound (sympathy)", "leveraged": [], "inverse": [], "live": 65.33000183105469, "live_time": "2026-10-19 10:38 CT", "live_day_pct": 7.805283549595199, "vs_pm_pct": -0.1833432680600655}, {"rank": 8, "ticker": "INTC", "name": "Intel", "pm_price": 93.98, "pm_change_pct": 4.6, "direction": "up", "confidence": "high", "catalyst": "JPMorgan upgrade + chip rebound", "leveraged": ["INTW", "LINT"], "inverse": [], "live": 95.21499633789062, "live_time": "2026-10-19 10:38 CT", "live_day_pct": 5.971058806778662, "vs_pm_pct": 1.3141054882854108}, {"rank": 9, "ticker": "MU", "name": "Micron", "pm_price": 916.01, "pm_change_pct": 4.2, "direction": "up", "confidence": "med", "catalyst": "Memory chip rally", "leveraged": ["MUU", "MULL"], "inverse": ["MUD"], "live": 925.4500122070312, "live_time": "2026-10-19 10:38 CT", "live_day_pct": 5.303583383440813, "vs_pm_pct": 1.0305577676042121}, {"rank": 10, "ticker": "DDOG", "name": "Datadog", "pm_price": 257.87, "pm_change_pct": 4.4, "direction": "up", "confidence": "med", "catalyst": "Bernstein upgrade, $350 target", "leveraged": [], "inverse": [], "live": 265.1199951171875, "live_time": "2026-10-19 10:37 CT", "live_day_pct": 7.288250219411396, "vs_pm_pct": 2.8114922702088263}], "file": "movers/2026-10-19.json"}, "market_filter": {"regime": "Green", "rules": "1.0% risk/trade, max 3 new positions", "checks": [{"label": "SPY > 50-day MA", "ok": true, "detail": "770.30 vs 768.44"}, {"label": "50-day MA rising", "ok": true, "detail": "768.44 vs 764.42 (10d ago)"}, {"label": "SPY > 200-day MA", "ok": true, "detail": "770.30 vs 725.46"}, {"label": "VIX < 20", "ok": true, "detail": "17.49"}, {"label": "Futures not down >1%", "ok": true, "detail": "ES +0.84% / NQ +1.93%"}], "source": "computed live (Yahoo daily SPY, ^VIX, ES=F, NQ=F)", "note": "STRATEGY_v2: in a sharp-selloff rebound, use Yellow sizing even if chart says Green."}, "errors": {}};render(window.__D);</script></body></html>
